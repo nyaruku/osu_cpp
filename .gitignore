@@ -400,3 +400,4 @@ FodyWeavers.xsd
 *.vcxproj
 dep/json.hpp
 test.cpp
+main.cpp
