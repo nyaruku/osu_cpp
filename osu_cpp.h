@@ -13,8 +13,18 @@ public:
 		std::string client_id;
 		std::string client_secret;
 
+		struct beatmap {
+			int beatmapset_id;
+			float difficulty_rating;
+			int id;
+			std::string status;
+			int total_length;
+			int user_id;
+			std::string version;
+		};
+
 		// Can be also used to re-authenticate
-		// Returns response status. Ex: "HTTP/1.1 200 OK"
+		// Returns response status or error
 		// ^^^ You don't need to get the returned value if don't want
 		std::string Auth() {
 			nlohmann::json AuthResult;
@@ -32,6 +42,7 @@ public:
 
 			AuthResult = nlohmann::json::parse(r.text);
 			authToken = "Bearer " + AuthResult.value("access_token", "");
+
 			return r.status_line;
 		}
 	};
